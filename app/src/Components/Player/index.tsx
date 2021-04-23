@@ -1,17 +1,31 @@
+import { useContext } from 'react';
+import { PlayerContext } from '../../contexts/PlayerContext'
 import styles from './styled.module.scss'
 
 export default function Player(){
+
+    const { episodeList, currentEpisodeIndex} = useContext(PlayerContext);
+    const episode = episodeList[currentEpisodeIndex];
 
     return(
         <div className={styles.playerContainer}>
             <header>
                 <img src="/playing.svg" alt="tocando agora"/>
-                <strong>Tocando Agora</strong>
+                <strong>Tocando Agora {episode?.title}</strong>
             </header>
 
-            <div className={styles.emptyPlayer}>
-                <strong>Selecione um podcast para ouvir</strong>
-            </div>
+            { episode ? (
+                <div className={styles.currentEpisode}>
+                    
+                </div>
+            ) : (
+            
+                <div className={styles.emptyPlayer}>
+                    <strong>Selecione um podcast para ouvir</strong>
+                </div>
+
+            )}
+
 
             <footer className={styles.empty}>
                 <div className={styles.progress}>
